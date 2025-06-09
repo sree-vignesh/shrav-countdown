@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono ,Pacifico,Meow_Script} from "next/font/google";
+import { Geist, Geist_Mono, Pacifico, Meow_Script } from "next/font/google";
 import "./globals.css";
 // import { ThemeProvider } from "@/components/theme-provider";
 
 const meowScript = Meow_Script({
-  subsets: ['latin'],
-  weight: '400',
-  variable: '--font-meow',
-  display: 'swap',
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-meow",
+  display: "swap",
 });
 
 const pacifico = Pacifico({
-  subsets: ['latin'],
-  weight: '400',
-  variable: '--font-pacifico',
-  display: 'swap',
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-pacifico",
+  display: "swap",
 });
 
 const geistSans = Geist({
