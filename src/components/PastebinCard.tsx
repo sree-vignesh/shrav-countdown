@@ -24,6 +24,19 @@ export default function Pastebin() {
   useEffect(() => {
     fetchPastes();
   }, []);
+  const handleDelete = async (id: string) => {
+    if (!confirm("Are you sure you want to delete this paste?")) return;
+    setLoading(true);
+    try {
+      const res = await fetch(`/api/pastes/${id}`, { method: "DELETE" });
+      if (!res.ok) throw new Error("Failed to delete paste");
+      await fetchPastes();
+    } catch (error) {
+      console.error(error);
+      alert("Failed to delete paste");
+    }
+    setLoading(false);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,15 +83,30 @@ export default function Pastebin() {
                 No pastes yet.
               </p>
             ) : (
-              <ul className="space-y-4  overflow-auto border dark:border-pink-900 rounded-lg p-4 bg-muted/10 dark:bg-muted/20">
+              <ul className="space-y-4 overflow-auto border dark:border-pink-900 rounded-lg p-4 bg-muted/10 dark:bg-muted/20">
                 {pastes.map((paste) => (
-                  <li key={paste._id} className="border-b pb-2 border-muted/40">
-                    <pre className="whitespace-pre-wrap text-sm text-gray-700 dark:text-gray-200">
+                  <li
+                    key={paste._id}
+                    className="border-b pb-2 border-muted/40 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
+                  >
+                    <pre className="whitespace-pre-wrap text-s text-gray-700 dark:text-gray-200 flex-1">
                       {paste.content}
                     </pre>
-                    <small className="text-xs text-gray-500 dark:text-gray-400">
-                      {new Date(paste.createdAt).toLocaleString()}
-                    </small>
+                    <div className="flex items-center justify-between sm:justify-end gap-2 mt-2 sm:mt-0">
+                      <small className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                        {new Date(paste.createdAt).toLocaleString()}
+                      </small>
+                      <button
+                        onClick={() => handleDelete(paste._id)}
+                        className="ml-4 px-3 py-1 rounded-md border-1 border-destructive text-white text-s font-semibold hover:bg-red-700 transition"
+                        aria-label={`Delete paste created at ${new Date(
+                          paste.createdAt
+                        ).toLocaleString()}`}
+                        type="button"
+                      >
+                        🗑️
+                      </button>
+                    </div>
                   </li>
                 ))}
               </ul>
