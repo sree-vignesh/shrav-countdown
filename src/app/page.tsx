@@ -36,9 +36,9 @@ export default function Home() {
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-secondary to-accent dark:from-slate-900 dark:to-slate-800 p-6">
-      <Card className="max-w-lg w-full rounded-2xl shadow-2xl bg-white/90 dark:bg-black/80 backdrop-blur-md">
+      <Card className="max-w-lg w-full rounded-2xl shadow-2xl bg-white/90 dark:bg-black/80 backdrop-blur-md border-2 border-muted-foreground">
         <CardContent className="p-8 flex flex-col items-center text-center gap-6">
-          <h1 className="text-4xl sm:text-6xl font-bold text-primary text-pink-600 dark:text-pink-400 animate-collapsible-down">
+          <h1 className="text-4xl sm:text-6xl font-bold text-primary  dark:text-pink-400 animate-pulse">
             Hi d Shraavvv !! 🥳
           </h1>
 
