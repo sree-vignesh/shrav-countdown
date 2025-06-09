@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 
-console.log("The mongodb id : ",process.env.MONGODB_URI)
+// console.log("The mongodb id : ",process.env.MONGODB_URI)
 const uri = process.env.MONGODB_URI!;
 const options = {};
 
