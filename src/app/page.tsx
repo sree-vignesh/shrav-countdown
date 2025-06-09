@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import ThemeToggle from "@/components/theme-toggle";
+// import PastebinCard from "@/components/PastebinCard";
 // import { ThemeProvider } from "@/components/theme-provider";
 // import { cn } from "@/lib/utils"; // only if you're using `cn`, else use plain Tailwind
 // import { GeistSans } from "geist/font/sans"; // or use your preferred font
@@ -35,7 +36,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-secondary to-accent dark:from-black dark:to-slate-950 p-6">
+    <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-secondary to-accent dark:from-black dark:to-slate-950 p-6">
       <Card className="max-w-lg w-full rounded-2xl shadow-2xl bg-white/90 dark:bg-purple-950/5 backdrop-blur-md dark:border-1 dark:border-pink-950">
         <CardContent className="p-8 flex flex-col items-center text-center gap-6">
           <h1 className="text-4xl sm:text-6xl font-pacifico text-primary  dark:text-pink-400 animate-pulse">
@@ -56,6 +57,7 @@ export default function Home() {
           <ThemeToggle />
         </CardContent>
       </Card>
+      {/* <PastebinCard /> */}
     </main>
   );
 }
