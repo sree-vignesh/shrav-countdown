@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { cn } from "@/lib/utils"; // only if you're using `cn`, else use plain Tailwind
-import { GeistSans } from "geist/font/sans"; // or use your preferred font
+// import { cn } from "@/lib/utils"; // only if you're using `cn`, else use plain Tailwind
+// import { GeistSans } from "geist/font/sans"; // or use your preferred font
 
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState<string>("");
