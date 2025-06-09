@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono ,Pacifico,Meow_Script} from "next/font/google";
 import "./globals.css";
+// import { ThemeProvider } from "@/components/theme-provider";
 
 const meowScript = Meow_Script({
   subsets: ['latin'],
@@ -41,7 +42,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${meowScript.variable} ${pacifico.variable} antialiased`}
       >
+        {/* <ThemeProvider> */}
+
         {children}
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );
