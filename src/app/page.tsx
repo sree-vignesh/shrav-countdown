@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import ThemeToggle from "@/components/theme-toggle";
-// import PastebinCard from "@/components/PastebinCard";
+import PastebinCard from "@/components/PastebinCard";
 // import { ThemeProvider } from "@/components/theme-provider";
 // import { cn } from "@/lib/utils"; // only if you're using `cn`, else use plain Tailwind
 // import { GeistSans } from "geist/font/sans"; // or use your preferred font
@@ -57,7 +57,7 @@ export default function Home() {
           <ThemeToggle />
         </CardContent>
       </Card>
-      {/* <PastebinCard /> */}
+      <PastebinCard />
     </main>
   );
 }

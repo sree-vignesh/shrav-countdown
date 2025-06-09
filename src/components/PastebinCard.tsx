@@ -1,43 +1,76 @@
 "use client";
 
-import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { Copy, Trash } from "lucide-react";
+import React, { useState, useEffect } from "react";
 
-export default function PastebinCard() {
-  const [text, setText] = useState("");
+type Paste = {
+  _id: string;
+  content: string;
+  createdAt: string;
+};
 
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(text);
+export default function Pastebin() {
+  const [content, setContent] = useState("");
+  const [pastes, setPastes] = useState<Paste[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  const fetchPastes = async () => {
+    const res = await fetch("/api/pastes");
+    const data = await res.json();
+    setPastes(data);
   };
 
-  const handleClear = () => {
-    setText("");
+  useEffect(() => {
+    fetchPastes();
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!content.trim()) return;
+
+    setLoading(true);
+    await fetch("/api/pastes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ content }),
+    });
+    setContent("");
+    await fetchPastes();
+    setLoading(false);
   };
 
   return (
-    <Card className="max-w-xl w-full mx-auto mt-8 bg-background text-foreground transition-colors duration-500">
-      <CardHeader>
-        <CardTitle className="text-lg">Mini Pastebin</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <Textarea
-          className="h-40 resize-none text-sm"
-          placeholder="Paste your code or text here..."
-          value={text}
-          onChange={(e) => setText(e.target.value)}
+    <div className="max-w-xl mx-auto p-4 space-y-6">
+      <form onSubmit={handleSubmit} className="flex flex-col space-y-2">
+        <textarea
+          rows={6}
+          className="p-2 border rounded-md resize-none"
+          placeholder="Paste your text here..."
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
         />
-        <div className="flex justify-end gap-2">
-          <Button variant="outline" onClick={handleClear}>
-            <Trash className="w-4 h-4 mr-1" /> Clear
-          </Button>
-          <Button onClick={handleCopy}>
-            <Copy className="w-4 h-4 mr-1" /> Copy
-          </Button>
-        </div>
-      </CardContent>
-    </Card>
+        <button
+          type="submit"
+          disabled={loading}
+          className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 disabled:opacity-50"
+        >
+          {loading ? "Saving..." : "Save Paste"}
+        </button>
+      </form>
+
+      <div>
+        <h2 className="text-lg font-semibold mb-2">Recent Pastes</h2>
+        {pastes.length === 0 && <p>No pastes yet.</p>}
+        <ul className="space-y-4 max-h-64 overflow-auto border p-2 rounded">
+          {pastes.map((paste) => (
+            <li key={paste._id} className="border-b pb-2">
+              <pre className="whitespace-pre-wrap">{paste.content}</pre>
+              <small className="text-gray-500">
+                {new Date(paste.createdAt).toLocaleString()}
+              </small>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 }
