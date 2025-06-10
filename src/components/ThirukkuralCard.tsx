@@ -38,7 +38,13 @@ export default function ScrapedCard() {
           {data ? (
             <div className="space-y-1 text-1xl font-bold">
               {/* <p className="font-medium">{data.kuralNo}</p> */}
-              <p className=" text-primary dark:text-primary">{data.kural}</p>
+              <p className=" text-primary  dark:text-pink-700 ">{data.kural}</p>
+              {/* <p className="text-primary dark:text-pink-700 w-1/2">
+                {data.kural.split(" ").slice(0, 4).join(" ")}
+              </p>
+              <p className="text-primary dark:text-pink-700 w-1/2">
+                {data.kural.split(" ").slice(3).join(" ")}
+              </p> */}
             </div>
           ) : (
             <p className="text-sm text-muted-foreground">Loading...</p>
