@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import ThemeToggle from "@/components/theme-toggle";
 import PastebinCard from "@/components/PastebinCard";
 import SlideInCard from "@/components/SlideInCard";
+import ScrapedCard from "@/components/ThirukkuralCard";
 // import { ThemeProvider } from "@/components/theme-provider";
 // import { cn } from "@/lib/utils"; // only if you're using `cn`, else use plain Tailwind
 // import { GeistSans } from "geist/font/sans"; // or use your preferred font
@@ -40,7 +41,7 @@ export default function Home() {
     <main className="transition  min-h-screen bg-gradient-to-br from-secondary to-accent dark:from-black dark:to-slate-950 px-4 py-6">
       <SlideInCard>
         {/* Intro Card wrapper with center logic */}
-        <div className="mt-10 mb-24 flex flex-col items-center justify-center">
+        <div className="mt-10 mb-10 flex flex-col items-center justify-center">
           <Card className=" max-w-2xl rounded-2xl shadow-2xl bg-white/90 dark:bg-purple-950/5 backdrop-blur-md dark:border dark:border-pink-950">
             <CardContent className="p-8 flex flex-col items-center text-center gap-6">
               <h1 className="text-4xl sm:text-6xl font-pacifico text-primary dark:text-pink-400 animate-pulse">
@@ -60,6 +61,9 @@ export default function Home() {
             </CardContent>
           </Card>
         </div>
+      </SlideInCard>
+      <SlideInCard>
+        <ScrapedCard />
       </SlideInCard>
       {/* PastebinCard follows naturally */}
       <div className=" flex justify-center">
