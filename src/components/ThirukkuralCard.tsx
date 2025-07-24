@@ -7,6 +7,7 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
+import React from "react";
 
 export default function ScrapedCard() {
   const [data, setData] = useState<{
@@ -37,16 +38,17 @@ export default function ScrapedCard() {
         <CardContent>
           {data ? (
             <div className="space-y-1 text-1xl font-bold">
-              {/* <p className="font-medium">{data.kuralNo}</p> */}
-              <p className=" text-primary text-2xl dark:text-pink-700 ">
+              {/* <p className=" text-primary text-2xl dark:text-pink-700 ">
                 {data.kural}
-              </p>
-              {/* <p className="text-primary dark:text-pink-700 w-1/2">
-                {data.kural.split(" ").slice(0, 4).join(" ")}
-              </p>
-              <p className="text-primary dark:text-pink-700 w-1/2">
-                {data.kural.split(" ").slice(3).join(" ")}
               </p> */}
+              <p className="text-primary text-2xl dark:text-pink-700">
+                {data.kural.split("<br>").map((line, idx) => (
+                  <React.Fragment key={idx}>
+                    {line}
+                    <br />
+                  </React.Fragment>
+                ))}
+              </p>
             </div>
           ) : (
             <p className="text-sm text-muted-foreground">Loading...</p>
